@@ -1,8 +1,9 @@
 import React from "react";
 import * as bip39 from "bip39";
+import PasswordForm from "./PasswordForm";
 
 const MnemonicGenerator: React.FC = () => {
-  const [Mnemonic, setMnemonic] = React.useState<string>("");
+  const [mnemonic, setMnemonic] = React.useState<string>("");
 
   const generateMnemonic = (): void => {
     const newMnemonic: string = bip39.generateMnemonic();
@@ -18,12 +19,13 @@ const MnemonicGenerator: React.FC = () => {
       >
         Generate Mnemonic
       </button>
-      {Mnemonic && (
+      {mnemonic && (
         <div className="mt-4 p-4 border border-gray-300 rounded-md">
           <h2>Your Mnemonic:</h2>
-          <p className="text-lg font-semibold">{Mnemonic}</p>
+          <p className="text-lg font-semibold">{mnemonic}</p>
         </div>
       )}
+      {mnemonic && <PasswordForm mnemonic={mnemonic} />}
     </div>
   );
 };
